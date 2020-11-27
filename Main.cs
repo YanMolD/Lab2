@@ -23,7 +23,12 @@ namespace Lab_2
             }
             catch (FormatException)
             {
-                Console.WriteLine($"Ошибка: данный формат не преобразован в integer, пожалуйста, повторите попытку\n");
+                Console.WriteLine("Ошибка: данный формат не преобразован в integer, пожалуйста, повторите попытку\n");
+                goto Square_goto;
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Ошибка: данное число слишком велико, пожалуйста, повторите попытку\n");
                 goto Square_goto;
             }
             Point[] ArrayRectangle;
@@ -40,7 +45,12 @@ namespace Lab_2
             }
             catch (FormatException ex)
             {
-                Console.WriteLine($"Ошибка: {ex.Message}, пожалуйста, повторите попытку\n");
+                Console.WriteLine("Ошибка: данный формат не преобразован в integer, пожалуйста, повторите попытку\n");
+                goto Rectangle_goto;
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Ошибка: данное число слишком велико, пожалуйста, повторите попытку\n");
                 goto Rectangle_goto;
             }
             Point[] ArrayCircle;
@@ -60,6 +70,11 @@ namespace Lab_2
                 Console.WriteLine($"Ошибка: данный формат не преобразован в integer, пожалуйста, повторите попытку\n");
                 goto Circle_goto;
             }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Ошибка: данное число слишком велико, пожалуйста, повторите попытку\n");
+                goto Circle_goto;
+            }
             Point[] ArrayTriangle;
         Triangle_goto:
             Console.WriteLine("Треугольник\n");
@@ -77,7 +92,11 @@ namespace Lab_2
                 Console.WriteLine($"Ошибка: данный формат не преобразован в integer, пожалуйста, повторите попытку\n");
                 goto Triangle_goto;
             }
-
+            catch (OverflowException)
+            {
+                Console.WriteLine("Ошибка: данное число слишком велико, пожалуйста, повторите попытку\n");
+                goto Triangle_goto;
+            }
             List<IFigure> figures = new List<IFigure>(4);
             Circle circle = new Circle(ArrayCircle);
             Rectangle rectangle = new Rectangle(ArrayRectangle);
