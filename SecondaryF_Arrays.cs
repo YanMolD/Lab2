@@ -127,7 +127,7 @@ namespace Lab_2
 
         public static Point[] Points_for_Circle()
         {
-            Point[] array = new Point[4];
+            Point[] array = new Point[2];
             Console.Write("Введите координату X: ");
             array[0].X = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();

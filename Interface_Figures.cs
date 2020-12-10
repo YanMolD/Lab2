@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lab_2
 {
-    public interface IFigure    //Абстрактный класс
+    public interface IFigure
     {
         public double CalcArea();
 
@@ -33,7 +33,7 @@ namespace Lab_2
             public Circle(Point[] array)
             {
                 if (array.Length != 2)
-                    throw new ArgumentException();
+                    throw new ArgumentException("Переданный массив неправильного размера");
                 if (array[1].X == array[0].X)
                     throw new ArgumentException("Неправильный радиус");
                 this.array = array;
@@ -41,7 +41,7 @@ namespace Lab_2
 
             public override string ToString()
             {
-                return "Круг";
+                return $"Круг, его площадь равна { CalcArea()}, периметр равен { CalcPerimeter()}";
             }
         }
 
@@ -64,8 +64,7 @@ namespace Lab_2
             public Square(Point[] array)
             {
                 if (array.Length != 4)
-                    throw new ArgumentException();
-
+                    throw new ArgumentException("Переданный массив неправильного размера");
                 if ((Calc_dist(array[0], array[2]) != Calc_dist(array[1], array[3])) || //стороны не равны
                     ((Calc_dist(array[0], array[1]) != Calc_dist(array[1], array[2])) ||
                     (Calc_dist(array[1], array[2]) != Calc_dist(array[2], array[3])) ||
@@ -77,7 +76,7 @@ namespace Lab_2
 
             public override string ToString()
             {
-                return "Квадрат";
+                return $"Квадрат, его площадь равна {CalcArea()}, периметр равен {CalcPerimeter()}";
             }
         }
 
@@ -100,7 +99,7 @@ namespace Lab_2
             public Rectangle(Point[] array)
             {
                 if (array.Length != 4)
-                    throw new ArgumentException();
+                    throw new ArgumentException("Переданный массив неправильного размера");
                 if ((Calc_dist(array[0], array[2]) != Calc_dist(array[1], array[3])) || //диагонали не равны
                 ((Calc_dist(array[0], array[1]) != Calc_dist(array[2], array[3])) ||
                 (Calc_dist(array[1], array[2]) != Calc_dist(array[3], array[0]))) || //стороны не равны попарно
@@ -115,7 +114,7 @@ namespace Lab_2
 
             public override string ToString()
             {
-                return "Прямоугольник";
+                return $"Прямоугольник, его площадь равна {CalcArea()}, периметр равен {CalcPerimeter()}";
             }
         }
 
@@ -141,7 +140,7 @@ namespace Lab_2
             public Triangle(Point[] array)
             {
                 if (array.Length != 3)
-                    throw new ArgumentException();
+                    throw new ArgumentException("Переданный массив неправильного размера");
                 if (((array[0].X == array[1].X) && (array[0].Y == array[1].Y)) ||
               ((array[1].X == array[2].X) && (array[1].Y == array[2].Y)) ||
               ((array[0].X == array[2].X) && (array[0].Y == array[2].Y)))//Точки совпадают
@@ -153,7 +152,7 @@ namespace Lab_2
 
             public override string ToString()
             {
-                return "Треугольник";
+                return $"Треугольник, его площадь равна {CalcArea()}, периметр равен {CalcPerimeter()}";
             }
         }
     }
