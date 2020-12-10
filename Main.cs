@@ -9,6 +9,7 @@ namespace Lab_2
     {
         private static void Main(string[] args)
         {
+        switch_1:
             Console.WriteLine("Выберите лабораторную (2 или 4)\n");
             switch (Console.ReadLine())
             {
@@ -233,17 +234,20 @@ namespace Lab_2
                             Console.WriteLine($"Фигура с наименьим периметром: { MainAcc.MinPerimeterShape()}\n");
                             Console.WriteLine($"Сумма всех площадей: { MainAcc.TotalArea()}\n");
                             Console.WriteLine($"Сумма всех периметров: { MainAcc.TotalPerimeter()}\n");
-                            break;
+                            goto EndOfProg;
 
                         default:
-                            break;
+                            Console.WriteLine("В меню не было такого варианта, повторите попытку\n");
+                            goto Add_Figure;
                     }
-                    if (counter == 0)
+                    counter++;
+                switch_2:
+                    if (counter == 1)
                     {
                         Console.WriteLine("Хотите добавить эту фигуру:\n1.В список\n2.В массив\n3.В отдельный ShapeAccumulator\n4.Cразу в основной ShapeAccumulator?\n");
                         user_choice = Convert.ToInt32(Console.ReadLine());
                     }
-                    counter++;
+
                     switch (user_choice)
                     {
                         case 1:
@@ -283,6 +287,7 @@ namespace Lab_2
 
                         case 3:
                             SideAcc.Add(figure);
+                        switch_3:
                             Console.WriteLine("Хотите добавить ещё фигур в дополнительный ShapeAccumulator?\n1.Да\n2.Нет\n");
                             switch (Convert.ToInt32(Console.ReadLine()))
                             {
@@ -294,18 +299,23 @@ namespace Lab_2
                                     counter = 0;
                                     goto Add_Figure;
                                 default:
-                                    break;
+                                    Console.WriteLine("В меню не было такого варианта, повторите попытку\n");
+                                    goto switch_3;
                             }
-                            goto Add_Figure;
                         case 4:
                             MainAcc.Add(figure);
                             counter = 0;
                             goto Add_Figure;
                         default:
-                            break;
+                            Console.WriteLine("В меню не было такого варианта, повторите попытку\n");
+                            goto switch_2;
                     }
-                    break;
+
+                default:
+                    Console.WriteLine("В меню не было такого варианта, повторите попытку\n");
+                    goto switch_1;
             }
+        EndOfProg: { }
         }
     }
 }

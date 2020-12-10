@@ -23,6 +23,8 @@ namespace Lab_2
 
         public void Add(IFigure value)
         {
+            if (value == null)
+                throw new ArgumentException("В функцию передана пустая фигура");
             figures.Add(value);
             TotalA += value.CalcArea();
             TotalP += value.CalcPerimeter();
@@ -48,18 +50,24 @@ namespace Lab_2
 
         public void AddAll(IFigure[] fig_array)
         {
+            if (fig_array == null)
+                throw new ArgumentException("В функцию передана пустая фигура");
             for (int i = 0; i < fig_array.Length; i++)
                 Add(fig_array[i]);
         }
 
         public void AddAll(List<IFigure> fig_list)
         {
+            if (fig_list == null)
+                throw new ArgumentException("В функцию передана пустая фигура");
             for (int i = 0; i < fig_list.Count; i++)
                 Add(fig_list[i]);
         }
 
         public void AddAll(ShapeAccumulator accum)
         {
+            if (accum == null)
+                throw new ArgumentException("В функцию передана пустая фигура");
             for (int i = 0; i < accum.figures.Count; i++)
                 Add(accum.figures[i]);
         }
