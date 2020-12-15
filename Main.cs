@@ -10,7 +10,7 @@ namespace Lab_2
         private static void Main(string[] args)
         {
         switch_1:
-            Console.WriteLine("Выберите лабораторную (2 или 4/5)\n");
+            Console.WriteLine("Выберите лабораторную (2 или 5)\n");
             switch (Console.ReadLine())
             {
                 case "2":
@@ -120,7 +120,7 @@ namespace Lab_2
                     Console.Write("Сумма всех периметров равна: {0}\n", Calc_All_Perimeterms(figures));
                     break;
 
-                case "4":
+                case "5":
                     int user_choice = 0;
                     int counter = 0;
                     List<IFigure> FiguresList = new List<IFigure>();
