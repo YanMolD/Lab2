@@ -10,7 +10,7 @@ namespace Lab_2
         private static void Main(string[] args)
         {
         switch_1:
-            Console.WriteLine("Выберите лабораторную (2 или 4)\n");
+            Console.WriteLine("Выберите лабораторную (2 или 4/5)\n");
             switch (Console.ReadLine())
             {
                 case "2":
@@ -127,10 +127,10 @@ namespace Lab_2
                     IFigure[] FiguresArray = null;
                     ShapeAccumulator MainAcc = new ShapeAccumulator();
                     ShapeAccumulator SideAcc = new ShapeAccumulator();
-                    IFigure figure = null;
                     int ArraySize = 0;
                 Add_Figure:
                     Console.WriteLine("Выберите, что вы хотите создать:\n1.Квадрат\n2.Круг\n3.Прямоугольник\n4.Треугольник\n\n5.Перейти к работе с основным ShapeAccumulator\n");
+                    IFigure figure;
                     switch (Convert.ToInt32(Console.ReadLine()))
                     {
                         case 1:
@@ -227,6 +227,63 @@ namespace Lab_2
                             break;
 
                         case 5:
+                            Console.WriteLine("Если хотите соханить фигуры, находящиеся в ShapeAccumulator, введите 1, если хотите загрузить уже сохранённые, введите 2.\nЕсли хотите очистить файл с сохранёнными фигурами, нажмите 3\n");
+                        SwitchSaveLoad:
+                            switch (Console.ReadLine())
+                            {
+                                case "1":
+                                    try
+                                    {
+                                        MainAcc.Save();
+                                    }
+                                    catch (ArgumentNullException ex)
+                                    {
+                                        Console.WriteLine($"Ошибка: {ex.Message}\n");
+                                    }
+                                    catch (FileNotFoundException)
+                                    {
+                                        Console.WriteLine("Ошибка: файла не существует\n");
+                                    }
+                                    break;
+
+                                case "2":
+                                    int save = MainAcc.figures.Count;
+                                    try
+                                    {
+                                        MainAcc.Load();
+                                    }
+                                    catch (FileNotFoundException)
+                                    {
+                                        Console.WriteLine("Ошибка: файла не существует\n");
+                                    }
+                                    Console.WriteLine($"Из файла загружено {MainAcc.figures.Count - save} фигур\n");
+                                    Console.WriteLine(MainAcc);
+                                    Console.WriteLine("Желаете сохранить этот список фигур?\n1. Да\n2. Нет\n");
+                                SwitchNewSave:
+                                    switch (Console.ReadLine())
+                                    {
+                                        case "1":
+                                            MainAcc.Delete_Save();
+                                            MainAcc.Save();
+                                            break;
+
+                                        case "2":
+                                            break;
+
+                                        default:
+                                            Console.WriteLine("Нет такого варианта, попробуйте ещё раз\n");
+                                            goto SwitchNewSave;
+                                    }
+                                    break;
+
+                                case "3":
+                                    MainAcc.Delete_Save();
+                                    break;
+
+                                default:
+                                    Console.WriteLine("Нет такого варианта, попробуйте ещё раз\n");
+                                    goto SwitchSaveLoad;
+                            }
                             Console.WriteLine($"Количество фигур в ShapeAccumulator: {MainAcc.figures.Count}\n");
                             Console.WriteLine($"Фигура с наибольшей площадью: { MainAcc.MaxAreaShape()}\n");
                             Console.WriteLine($"Фигура с наибольшим периметром: { MainAcc.MaxPerimeterShape()}\n");

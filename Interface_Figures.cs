@@ -14,6 +14,7 @@ namespace Lab_2
 
     partial class Program
     {
+        [Serializable]
         public class Circle : IFigure
         {
             private readonly Point[] array;
@@ -45,6 +46,7 @@ namespace Lab_2
             }
         }
 
+        [Serializable]
         public class Square : IFigure
         {
             private readonly Point[] array;
@@ -80,6 +82,7 @@ namespace Lab_2
             }
         }
 
+        [Serializable]
         public class Rectangle : IFigure
         {
             private readonly Point[] array;
@@ -118,6 +121,7 @@ namespace Lab_2
             }
         }
 
+        [Serializable]
         public class Triangle : IFigure
         {
             private readonly Point[] array;
