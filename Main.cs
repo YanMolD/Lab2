@@ -258,21 +258,24 @@ namespace Lab_2
                                     }
                                     Console.WriteLine($"Из файла загружено {MainAcc.figures.Count - save} фигур\n");
                                     Console.WriteLine(MainAcc);
-                                    Console.WriteLine("Желаете сохранить этот список фигур?\n1. Да\n2. Нет\n");
-                                SwitchNewSave:
-                                    switch (Console.ReadLine())
+                                    if (MainAcc.figures.Count != save)
                                     {
-                                        case "1":
-                                            MainAcc.Delete_Save();
-                                            MainAcc.Save();
-                                            break;
+                                        Console.WriteLine("Желаете сохранить этот список фигур?\n1. Да\n2. Нет\n");
+                                    SwitchNewSave:
+                                        switch (Console.ReadLine())
+                                        {
+                                            case "1":
+                                                MainAcc.Delete_Save();
+                                                MainAcc.Save();
+                                                break;
 
-                                        case "2":
-                                            break;
+                                            case "2":
+                                                break;
 
-                                        default:
-                                            Console.WriteLine("Нет такого варианта, попробуйте ещё раз\n");
-                                            goto SwitchNewSave;
+                                            default:
+                                                Console.WriteLine("Нет такого варианта, попробуйте ещё раз\n");
+                                                goto SwitchNewSave;
+                                        }
                                     }
                                     break;
 
