@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace Lab_2
 {
@@ -79,6 +81,36 @@ namespace Lab_2
         {
             return Math.Sqrt(Math.Pow(point2.X - point1.X, 2) + Math.Pow(point2.Y - point1.Y, 2));
         }
+
+        public static void Save(ShapeAccumulator figures)
+        {
+            if (figures.figures.Count == 0)
+                return;
+            ShapeAccumulator shapeAccumulator = new ShapeAccumulator();
+            Load(figures);
+            shapeAccumulator.AddAll(figures);
+            using (FileStream fs = new FileStream(figures.path + $"/figures.shape", FileMode.OpenOrCreate))
+            {
+                figures.formatter.Serialize(fs, shapeAccumulator.figures);
+            }
+        }
+
+        public static void Load(ShapeAccumulator figures)
+        {
+            string[] fileEntries = Directory.GetFiles(figures.path, "*.shape");
+            foreach (string item in fileEntries)
+            {
+                using (FileStream fs = new FileStream(item, FileMode.OpenOrCreate))
+                {
+                    List<IFigure> fig = (List<IFigure>)figures.formatter.Deserialize(fs);
+                    if (fig.Count == 0)
+                        return;
+                    figures.AddAll(fig);
+                }
+            }
+        }
+
+        public static void Delete_Save(ShapeAccumulator figures) => File.Delete(figures.path + $"/figures.shape");
 
         public static Point[] Points_for_Square()
         {

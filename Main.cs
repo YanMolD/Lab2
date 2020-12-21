@@ -234,7 +234,7 @@ namespace Lab_2
                                 case "1":
                                     try
                                     {
-                                        MainAcc.Save();
+                                        Save(MainAcc);
                                     }
                                     catch (ArgumentNullException ex)
                                     {
@@ -250,7 +250,7 @@ namespace Lab_2
                                     int save = MainAcc.figures.Count;
                                     try
                                     {
-                                        MainAcc.Load();
+                                        Load(MainAcc);
                                     }
                                     catch (FileNotFoundException)
                                     {
@@ -265,8 +265,8 @@ namespace Lab_2
                                         switch (Console.ReadLine())
                                         {
                                             case "1":
-                                                MainAcc.Delete_Save();
-                                                MainAcc.Save();
+                                                Delete_Save(MainAcc);
+                                                Save(MainAcc);
                                                 break;
 
                                             case "2":
@@ -280,7 +280,7 @@ namespace Lab_2
                                     break;
 
                                 case "3":
-                                    MainAcc.Delete_Save();
+                                    Delete_Save(MainAcc);
                                     break;
 
                                 default:
