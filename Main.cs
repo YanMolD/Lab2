@@ -125,7 +125,7 @@ namespace Lab_2
                     int counter = 0;
                     List<IFigure> FiguresList = new List<IFigure>();
                     IFigure[] FiguresArray = null;
-                    ShapeAccumulator MainAcc = new ShapeAccumulator();
+                    ShapeAccumulator MainAcc = new ShapeAccumulator("MainAcc");
                     ShapeAccumulator SideAcc = new ShapeAccumulator();
                     int ArraySize = 0;
                 Add_Figure:

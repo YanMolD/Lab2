@@ -14,6 +14,21 @@ namespace Lab_2
         public readonly BinaryFormatter formatter;
         public readonly string path;
 
+        public ShapeAccumulator(string FileName)
+        {
+            figures = new List<IFigure>();
+            formatter = new BinaryFormatter();
+            path = Path.Combine(Environment.CurrentDirectory, FileName + "figures");
+            if (!File.Exists(Environment.CurrentDirectory))
+                Directory.CreateDirectory(path);
+            MinA = null;
+            MaxA = null;
+            MinP = null;
+            MaxP = null;
+            TotalA = 0;
+            TotalP = 0;
+        }
+
         public ShapeAccumulator()
         {
             figures = new List<IFigure>();
